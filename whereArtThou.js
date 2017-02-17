@@ -38,11 +38,32 @@ function where(collection, source) {
 
 
 // functional version
-function where(collection, source) {
-    return collection.filter(function (obj) {
-        return obj[Object.keys(source)] === source[Object.keys(source)];
-    });
+
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  var arr = [];
+  var sourceKeys = Object.keys(source);
+  
+  // Only change code below this line
+  arr = collection.filter(function (val) {
+    console.log(sourceKeys);
+    var areValuesEqual = true;
+    for (var i in sourceKeys) {
+      var key = sourceKeys[i];
+      
+      if (!(val.hasOwnProperty(key) && val[key] == source[key])) {
+        areValuesEqual = false;
+        break;
+      }
+    }
+    return areValuesEqual;
+  });
+  
+  // Only change code above this line
+  return arr;
 }
+
+whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "c": 2 });
 where([{
 	first: 'Romeo',
 	last: 'Montague'
